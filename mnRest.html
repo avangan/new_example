@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+	<html>
+	        <head>
+	        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js"></script>
+	        <title> Twin Cities Resturant</title>
+	        <style>
+	             #head{
+	                  background-color: #333;
+	                  color: white;
+	                  width: 1000px;
+	               
+	                }
+	              
+	               body{
+	               font-family: 'Shadows Into Light', cursive;
+	               font-size: 16px;
+	               
+	                }
+	               th,td {
+	                       width: 430px;
+	                       height: 70px;
+	                       border: solid 2px #333;
+	               }
+	               th {
+	                       font-weight: 900;
+	               }
+	        
+	        </style>
+	        <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+	        
+	        </head>
+	        <body>
+	        <header>
+	               <h1>  This webpage depicts data for Twin Cities Resturant's </h1>
+	        
+	        </header>
+	
+	               <div id="output"></div>
+	
+	        <footer>
+	
+	        </footer>
+	        <script src="mnRest.js"></script>
+	        <script>
+	
+	
+	
+	
+	var output ="";
+	var output = "<table>" + "<tr>" +"<th> Name </th>" + "<th> Type </th>" + "<th> Location </th>" + "<th> Bar </th>" + "<th> Brunch</th>" + "</tr>"; 
+	for(var x = 0; x < data.length; x++){
+	       var Name = data[x].Name;
+	       var Type = data[x].Type;
+	       var Location = data[x].Location;
+          var Bar = data[x].Bar;
+          var Brunch = data[x].Brunch;
+          
+	
+	output += '<tr>' + '<td>' + Name + '</td>' + '<td>' + Type.toFixed(2)  + '</td>' + '<td>' + Location + '</td>' + '<td>' + Bar + '</td>' + '<td>' + Brunch + '</td>' +'</tr>';
+	
+	}
+	output += "</table>";
+	
+	
+	document.getElementById('output').innerHTML = output;
+	
+	</script>
+	               <canvas id="myChart" width="400" height="400"></canvas>
+	               <script>
+	var ctx = document.getElementById("myChart");
+	var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: (function(){
+	               var arr = [];
+	               for(var i=0; i<5; i++){
+	                   arr.push(data[i].Type);
+	                       
+	                   
+	               }
+	               return arr;
+	           })("Name:")
+	               
+	               /**[data[0].institution_name, data[1].institution_name, data[2].institution_name, data[3].institution_name, data[4].institution_name, data[5].institution_name]**/,
+	        datasets: [{
+	            label: 'Types of resturants in the Twin Cities',
+	            data: [data[0].Type, data[1].Type, data[2].Type, data[3].Type, data[4].Type, data[5].Type],
+	            backgroundColor: [
+	                'rgba(255, 99, 132, 0.2)',
+	                'rgba(54, 162, 235, 0.2)',
+	                'rgba(255, 206, 86, 0.2)',
+	                'rgba(75, 192, 192, 0.2)',
+	                'rgba(153, 102, 255, 0.2)',
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,1)',
+	                'rgba(54, 162, 235, 1)',
+	                'rgba(255, 206, 86, 1)',
+	                'rgba(75, 192, 192, 1)',
+	                'rgba(153, 102, 255, 1)',
+	                'rgba(255, 159, 64, 1)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+	</script>
+	        </body>
+	</html>
+
